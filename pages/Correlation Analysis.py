@@ -95,8 +95,8 @@ def plot_dietary_changes(data, start_year, end_year, country, sex):
 
 # Main function to create UI and plot graph
 def main():
-    file_path1 = "data1.csv"
-    file_path2 = "data2.csv"
+    file_path1 = "JME_Malnutrition_Data.csv"
+    file_path2 = "Dietary_Data.csv"
 
     # Load data from CSV file
     df1, df2 = load_data(file_path1, file_path2)

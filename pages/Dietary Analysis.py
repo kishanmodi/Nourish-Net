@@ -107,8 +107,8 @@ def main():
     st.title("Dietary Analysis")
 
     # Update the file paths below
-    file_path1 = "data1.csv"  # Update with the file path for Table 1
-    file_path2 = "data2.csv"  # Update with the file path for Table 2
+    file_path1 = "JME_Malnutrition_Data.csv"  # Update with the file path for Table 1
+    file_path2 = "Dietary_Data.csv"  # Update with the file path for Table 2
 
     # Load data from CSV files
     df1, df2 = load_data(file_path1, file_path2)

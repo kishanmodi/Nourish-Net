@@ -418,7 +418,7 @@ def display_gif(gif_filepath):
 def main():
     st.title("Malnutrition Analysis")
 
-    file_path = "data1.csv"
+    file_path = "JME_Malnutrition_Data.csv"
 
     # Load data from CSV file
     df = load_data(file_path)
