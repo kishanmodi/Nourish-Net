@@ -107,7 +107,9 @@ def main():
     st.sidebar.subheader("Filter Options")
 
     selected_country = st.sidebar.selectbox(
-        "Select Countries", options=df2["Country Name"].unique()
+        "Select Countries",
+        options=df2["Country Name"].unique(),
+        index=df2["Country Name"].unique().tolist().index("United States"),
     )
     start_year = st.sidebar.number_input(
         "Start Year",
