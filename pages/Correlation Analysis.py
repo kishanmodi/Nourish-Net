@@ -10,22 +10,22 @@ api_key = os.environ.get("API_KEY")
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-pro")
 
+# Store data temporarily
 geminiData = {"dietData": None, "malnutritionData": None}
 
 
 # Function to generate content with insights
 def generate_content_with_insights(document1, document2, df1, df2):
-    combined_content = f"{document1}\n\n{df1.to_string()} \n {document2}\n\n{df2.to_string()} \n\n Provide Correlation Analysis on Malnutriton and Diet Data Provided Above\n\n"
+    combined_content = f"{document1}\n\n{df1.to_string()} \n {document2}\n\n{df2.to_string()} \n\n Provide Correlation Analysis on Malnutrition and Diet Data Provided Above\n\n"
     response = model.generate_content(combined_content)
     return response
 
 
 # Function to generate statement based on data
 def generate_statement(df1, df2, malnutrition):
-    # Call the function with the document and the DataFrame
     try:
         document1 = "Provide Insight about this Data - This is about absoulte change in nutrients intake (Concise) :"
-        document2 = f"Provide Insight about this Data - This is A Malnutrititon {malnutrition} trend in country (Concise):"
+        document2 = f"Provide Insight about this Data - This is A Malnutrition {malnutrition} trend in country (Concise):"
         response = generate_content_with_insights(document1, document2, df1, df2)
         return response.text
     except Exception as e:
@@ -39,10 +39,10 @@ def load_data(file_path1, file_path2):
     return df1, df2
 
 
-# # load data from mysql to df from docker
+# Function to load data from MySQL
 # def load_data_from_mysql():
 #     import mysql.connector
-
+#
 #     mydb = mysql.connector.connect(
 #         host="localhost", user="root", password="my-secret-pw", database="ADT"
 #     )
@@ -80,7 +80,9 @@ def plot_dietary_changes(data, start_year, end_year, country, sex):
         index="Nutrition", columns="Country Name", values="Mean"
     )
 
+    # Store filtered data for later use
     geminiData["dietData"] = filtered_data
+
     # Plot a bar graph for the specified country's dietary changes
     fig = px.bar(pivot_table, x=pivot_table.index, y=pivot_table[country])
     fig.update_layout(
@@ -93,7 +95,6 @@ def plot_dietary_changes(data, start_year, end_year, country, sex):
 
 # Main function to create UI and plot graph
 def main():
-    # load_data_from_mysql()
     file_path1 = "data1.csv"
     file_path2 = "data2.csv"
 
@@ -103,7 +104,6 @@ def main():
     st.title("Correlation Analysis")
 
     ## ----------------- Sidebar ----------------- ##
-    # Get unique countries and analysis types
     st.sidebar.subheader("Filter Options")
 
     selected_country = st.sidebar.selectbox(
@@ -128,6 +128,7 @@ def main():
 
     plot_dietary_changes(df2, start_year, end_year, selected_country, 999)
 
+    # Filter malnutrition data
     filtered_df = df1[(df1["Country Name"] == selected_country) & (df1["Sex"] == 999)]
 
     if not filtered_df.empty:
@@ -163,7 +164,7 @@ def main():
                     geminiData["dietData"],
                     geminiData["malnutritionData"],
                     selected_y_axis,
-                )  # Assuming generate_statement is your function
+                )
                 st.write(statement)
     else:
         st.warning("Malnutrition data is not available for the selected country.")
