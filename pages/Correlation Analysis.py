@@ -39,23 +39,23 @@ def load_data(file_path1, file_path2):
     return df1, df2
 
 
-# load data from mysql to df from docker
-def load_data_from_mysql():
-    import mysql.connector
+# # load data from mysql to df from docker
+# def load_data_from_mysql():
+#     import mysql.connector
 
-    mydb = mysql.connector.connect(
-        host="localhost", user="root", password="my-secret-pw", database="ADT"
-    )
-    mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM malnutrition;")
-    myresult = mycursor.fetchall()
-    df1 = pd.DataFrame(myresult)
-    mycursor.execute("SELECT * FROM nutrition_data;")
-    myresult = mycursor.fetchall()
-    df2 = pd.DataFrame(myresult)
-    df1.head()
-    df2.head()
-    # return df1, df2
+#     mydb = mysql.connector.connect(
+#         host="localhost", user="root", password="my-secret-pw", database="ADT"
+#     )
+#     mycursor = mydb.cursor()
+#     mycursor.execute("SELECT * FROM malnutrition;")
+#     myresult = mycursor.fetchall()
+#     df1 = pd.DataFrame(myresult)
+#     mycursor.execute("SELECT * FROM nutrition_data;")
+#     myresult = mycursor.fetchall()
+#     df2 = pd.DataFrame(myresult)
+#     df1.head()
+#     df2.head()
+#     # return df1, df2
 
 
 # Function to plot dietary changes
@@ -93,7 +93,7 @@ def plot_dietary_changes(data, start_year, end_year, country, sex):
 
 # Main function to create UI and plot graph
 def main():
-    load_data_from_mysql()
+    # load_data_from_mysql()
     file_path1 = "data1.csv"
     file_path2 = "data2.csv"
 
