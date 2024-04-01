@@ -29,7 +29,7 @@ def generate_statement(df1, df2, malnutrition):
         response = generate_content_with_insights(document1, document2, df1, df2)
         return response.text
     except Exception as e:
-        return st.warning("Could not generate insights for the data.")
+        return "Could not generate insight"
 
 
 # Function to load data from CSV files
