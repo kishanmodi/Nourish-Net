@@ -6,6 +6,9 @@ Welcome to the NourishNet Project! This initiative, part of the Advanced Databas
 
 Childhood malnutrition poses significant health risks worldwide. The NourishNet Project aims to combat this challenge by employing advanced data analysis techniques and Gemini AI to understand the intricate relationship between diet and malnutrition.
 
+## Live Demo
+[NourishNet](https://nourish-net.streamlit.app/)
+
 ## Features
 
 - Integration of advanced data analysis techniques such as ARIMA, K-Means clustering, PCA.
