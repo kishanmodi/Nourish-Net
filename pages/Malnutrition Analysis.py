@@ -33,7 +33,7 @@ def generate_statement(df, mal_type):
         response = generate_content_with_insights(document, df)
         return response.text
     except Exception as e:
-        return str("Could not generate insights for the data.")
+        return "Could not generate insight"
 
 
 # Function to load data from CSV file
